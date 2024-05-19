@@ -14,7 +14,7 @@ Esse repositório é para ser utilizado pelos grupos como um template inicial, d
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 202301135052  |  Gabriel Franklin Monteiro |
 | xx/xxxxxx  |  xxxx xxxx xxxxx |
 
 ## Sobre 
