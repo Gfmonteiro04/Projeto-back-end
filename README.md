@@ -13,7 +13,7 @@
 
 
 ## Sobre 
-Descreva o seu projeto em linhas gerais. 
+O projeto consiste em criar um aplicativo para a empresa CertiBrasil, que deve possuir um mapa onde mostre a localização de todos os clientes(empresas) possibilitando a tomada de decisões estratégicas.
 
 ## Screenshots
 Adicione 3 ou mais screenshots do projeto em termos de interface e funcionamento.
@@ -28,7 +28,7 @@ Adicione 3 ou mais screenshots do projeto em termos de interface e funcionamento
 Passos para instalação
 
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
+Após abrir o aplicativo o administrador deve logar em sua conta com login e senha. Ao logar, o admin será redirecionado para a pagina principal do aplicativo, onde ele podera consultar o mapa através dos filtros e localizar as empresas em determinada área. Além disso terá a opção de registrar novas empresas, ver informações das empresas cadastradas, assim como alterar e excluir.
 
 ## Vídeo
 Adicione 1 ou mais vídeos com a execução do projeto final.
