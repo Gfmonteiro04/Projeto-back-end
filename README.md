@@ -7,7 +7,7 @@
 |Matrícula | Aluno |
 | -- | -- |
 | 202301135052  |  Gabriel Franklin Monteiro |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 202203250001  |  Gabriel Lacerda da Fontoura |
 | xx/xxxxxx  |  xxxx xxxx xxxxx |
 | xx/xxxxxx  |  xxxx xxxx xxxxx |
 
