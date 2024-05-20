@@ -1,20 +1,25 @@
-# ProjetoBackEnd
+# NomedoProjeto
+
+**Número do Grupo**: 8003<br>
+**Código da Disciplina**: FGA0208-T01<br>
 
 ## Alunos
 |Matrícula | Aluno |
-| 202108004171 | Ana Beatriz Lessa|
+| -- | -- |
+| 202301135052  |  Gabriel Franklin Monteiro |
+| 202203250001  |  Gabriel Lacerda da Fontoura |
+| 202108004171  |  Ana Beatriz Lessa |
 | xx/xxxxxx  |  Anna Beatriz Flores |
-| xx/xxxxxx  |  Gabriel |
-| xx/xxxxxx  |  Gabriel |
+
 
 ## Sobre 
-Este projeto é um sistema de gerenciamento de [descrição do projeto]. O objetivo principal é facilitar o [objetivo do projeto].
+Descreva o seu projeto em linhas gerais. 
 
 ## Screenshots
 Adicione 3 ou mais screenshots do projeto em termos de interface e funcionamento.
 
 ## Instalação 
-**Linguagens**: Python<br>
+**Linguagens**: python<br>
 **Tecnologias**: Django<br>
 
 ## Pré-requisitos
