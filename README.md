@@ -19,8 +19,8 @@ Descreva o seu projeto em linhas gerais.
 Adicione 3 ou mais screenshots do projeto em termos de interface e funcionamento.
 
 ## Instalação 
-**Linguagens**: python<br>
-**Tecnologias**: Django<br>
+**Linguagens**: python, html, css, javaScript<br>
+**Tecnologias**: Django, folium<br>
 
 ## Pré-requisitos
 [Pré-requisito 1]
