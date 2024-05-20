@@ -8,8 +8,8 @@
 | -- | -- |
 | 202301135052  |  Gabriel Franklin Monteiro |
 | 202203250001  |  Gabriel Lacerda da Fontoura |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 202108004171  |  Ana Beatriz Lessa |
+| xx/xxxxxx  |  Anna Beatriz Flores |
 
 
 ## Sobre 
@@ -20,9 +20,12 @@ Adicione 3 ou mais screenshots do projeto em termos de interface e funcionamento
 
 ## Instalação 
 **Linguagens**: python<br>
-**Tecnologias**: xxxxxx<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
-Insira um manual ou um script para auxiliar ainda mais.
+**Tecnologias**: Django<br>
+
+## Pré-requisitos
+[Pré-requisito 1]
+[Pré-requisito 2]
+Passos para instalação
 
 ## Uso 
 Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
