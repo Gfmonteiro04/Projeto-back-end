@@ -1,0 +1,35 @@
+{% extends "base.html" %} 
+
+{% block content %} 
+
+<!--index.html--> 
+
+{% if object_list %} 
+
+<h3>Todas as minhas listas</h3> 
+
+{% endif %} 
+
+<ul> 
+
+    {% for todolist in object_list %} 
+
+    <li> 
+
+        <div role="button" onclick="location.href='{% url "list" certibrasil.id %}'"> 
+
+            {{ todolist.title }} 
+
+        </div> 
+
+    </li> 
+
+    {% empty %} 
+
+    <h4>Você não tem listas</h4> 
+
+    {% endfor %} 
+
+</ul> 
+
+{% endblock %} 

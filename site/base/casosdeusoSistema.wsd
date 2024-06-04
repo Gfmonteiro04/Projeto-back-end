@@ -1,0 +1,16 @@
+@startuml
+
+skinparam actorStyle awesome
+actor Gerente as gr
+
+package sistema{
+    (login) as lg
+    (Home) as hm
+    (Mapa) as mp
+    (Cadastro cliente) as cc
+}
+gr -> lg
+lg -> hm
+hm -> cc    
+hm -> mp
+@enduml

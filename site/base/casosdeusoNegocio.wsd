@@ -1,0 +1,9 @@
+@startuml
+:Empresa: as ep
+:CertiBrasil: as cb
+(Emite Certificados) as cf
+
+ep -> cb
+cb -> cf
+cb -> (Cadastra empresa)
+@enduml
