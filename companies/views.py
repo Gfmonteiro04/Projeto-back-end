@@ -12,8 +12,14 @@ from geopy.geocoders import Nominatim
 from django.contrib.auth.forms import UserCreationForm
 from .models import Company, Certification
 from .serializers import CompanySerializer, CertificationSerializer
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
 
 logger = logging.getLogger(__name__)
+
+@login_required
+def home_view(request):
+    return redirect('map_view')
 
 def map_view(request):
     return render(request, 'companies/map.html')
@@ -32,6 +38,8 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'companies/registration/register.html', {'form': form})
 
+def login_view(request):
+    return render(request, 'account/login.html')
 
 class CompanyViewSet(viewsets.ModelViewSet):
     queryset = Company.objects.all()
@@ -72,16 +80,19 @@ def upload_csv(request):
                 for cert in certifications:
                     obj, created = Certification.objects.get_or_create(name=cert.strip())
                     cert_objects.append(obj)
-                company = Company.objects.create(
-                    name=row['name'],
-                    street=row['street'],
-                    number=row['number'],
-                    zip_code=row['zip_code'],
-                    city=row['city'],
-                    state=row['state']
-                )
-                company.certifications.set(cert_objects)
-                company.save()
+                try:
+                    company = Company.objects.create(
+                        name=row['name'],
+                        street=row['street'],
+                        number=row['number'],
+                        zip_code=row['zip_code'],
+                        city=row['city'],
+                        state=row['state']
+                    )
+                    company.certifications.set(cert_objects)
+                    company.save()
+                except ValidationError as ve:
+                    logger.error(f"Validation error for company {row['name']}: {ve}")
         return Response({"status": "success"})
     except Exception as e:
         logger.error(f"Error uploading CSV: {e}")

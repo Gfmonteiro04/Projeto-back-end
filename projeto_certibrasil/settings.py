@@ -47,12 +47,11 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-# Configurações do Django Allauth
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = False
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/map/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = 'account_login'
 
@@ -152,7 +151,9 @@ LOGGING = {
 
 # Arquivos estáticos
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # Arquivos de mídia
 MEDIA_URL = '/media/'
