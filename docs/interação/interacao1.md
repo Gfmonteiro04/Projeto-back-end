@@ -1,7 +1,4 @@
----
-id: interação1
-title: Interação 1
----
+
 
 # Interação 1 (05/02/24 à 12/04/2024)
 
@@ -22,12 +19,12 @@ title: Interação 1
 | Elaborar [5w2H](https://github.com/xxx/xxx.md) |Ana Beatriz|
 | [Mapas Mentais](https://github.com/xxx/xxx.md) |XXX e XXXXX|
 | [Brainstorming](https://github.com/UnBArqDsw/2020.1_G7_TCM/blob/master/docs/base/Brainstorm.md) |Todos|
-|[Entrevistas](https://github.com/xxx/xxx.md) |XXX e XXXXX|
-|[Prototipação.](https://github.com/xxx/xxx.md) |XXX e XXXXX|
+|[Entrevistas](https://github.com/xxx/xxx.md) |Todos|
+|[Prototipação.](https://github.com/xxx/xxx.md) |Anna Beatriz Flores|
 
 ## Sprint Retrospective/Review Meeting
 
-#### Presentes na reunião: XXXX
+#### Presentes na reunião: Todos
 
 ### Dividas da Interação
 - 
@@ -59,13 +56,11 @@ title: Interação 1
 ### O que podemos melhorar?
 - Ter mais foco na reuniões para evitar o desperdício de tempo.
 - A equipe deve ter mais autonomia em relação à falta de membros.
-- Podemos utilizar algo ferramenta de timebox para maior efetividade nas reuniões, sugestão: https://timebox.cedrotech.com/
-
+- Ter uma liderança mais efetiva e incisiva 
 
 ### Ferramentas utilizadas
 
-- Reunião: [Hangouts](https://hangouts.google.com/)
-- Colheita dos pontos: [Mentimeter](https://www.mentimeter.com/)
+- Reunião: Pessoalmente e WhatsApp
 
 
 
