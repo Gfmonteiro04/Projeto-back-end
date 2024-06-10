@@ -1,0 +1,106 @@
+/* Estilos personalizados para se parecer com o site Certi Brasil */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #1c1c1c;
+}
+
+.navbar-brand, .nav-link {
+    color: #ffffff !important;
+}
+
+.nav-link:hover {
+    color: #00b3e3 !important;
+}
+
+.header {
+    background: url('/static/images/header-bg.jpg') no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.header p {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+.table {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+}
+
+.table th, .table td {
+    padding: 15px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #1c1c1c;
+    color: #ffffff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+}
+
+.footer {
+    background-color: #1c1c1c;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer a {
+    color: #00b3e3;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #ffffff;
+}
+
+.btn-primary {
+    background-color: #00b3e3;
+    border-color: #00b3e3;
+}
+
+.btn-primary:hover {
+    background-color: #008bb5;
+    border-color: #008bb5;
+}
+
+#map {
+    height: 600px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #1c1c1c;
+}
+
+a {
+    color: #00b3e3;
+}
+
+a:hover {
+    color: #008bb5;
+}

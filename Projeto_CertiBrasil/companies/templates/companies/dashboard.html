@@ -1,0 +1,36 @@
+{% extends "base/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Dashboard</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Rua</th>
+                <th>Número</th>
+                <th>CEP</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Certificações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for company in companies %}
+            <tr>
+                <td>{{ company.name }}</td>
+                <td>{{ company.street }}</td>
+                <td>{{ company.number }}</td>
+                <td>{{ company.zip_code }}</td>
+                <td>{{ company.city }}</td>
+                <td>{{ company.state }}</td>
+                <td>{{ company.certifications.all|join:", " }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
