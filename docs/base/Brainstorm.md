@@ -10,12 +10,8 @@ O brainstorm é uma técnica de elicitação de requisitos que consiste em reuni
  
 ## Metodologia
 <p align = "justify">
-A equipe se reuniu para debater ideias gerais sobre o projeto via whatsapp e presencialment na fcauldade, começou no inncio do semestre e  terminou no final do semstre, onde o Professor John foi o guia, direcionando a equipe com questões pré-elaboradas para o documento.
+A equipe se reuniu para debater ideias gerais sobre o projeto via whatsapp e presencialmente na fcauldade, começou no inncio do semestre e  terminou no final do semstre, onde o Professor John foi o nosso guia.
 </p>
- 
-## Brainstorm
- 
-## Versão 1.0
  
 ## Perguntas
  
