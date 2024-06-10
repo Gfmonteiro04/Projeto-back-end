@@ -28,11 +28,11 @@ Responsabilidade: Tomada de decisões estratégicas baseadas nos insights fornec
 Aprimorar a tomada de decisão e estratégias de marketing por meio de análises geográficas precisas e detalhadas dos clientes.
 
 ## Descrição do Problema
----
+
 O Problema: Falta de ferramentas integradas para análise geográfica de dados de clientes.
 Afeta: Gestores e equipes de marketing.
 O seu Impacto É: Ineficiência na criação de estratégias de mercado e na tomada de decisões.
----
+
 ### Impactados
 
 Gestores e equipes de marketing.
