@@ -1,10 +1,10 @@
 
 
-# Interação 1 (05/02/24 à 12/04/2024)
+# Interação 1 (05/02/2024 à 12/04/2024)
 
 
 ## Planejamento de Interação
-#### Presentes na reunião: XXXXX
+#### Presentes na reunião: TODOS Gabriel Lacerda, Ana Beatriz, Anna Beatriz Flores, Gabriel Monteiro
 
 ###  Lista de Tarefas da Interação
 
@@ -24,7 +24,7 @@
 
 ## Sprint Retrospective/Review Meeting
 
-#### Presentes na reunião: Todos
+#### Presentes na reunião: TODOS Gabriel Lacerda, Ana Beatriz, Anna Beatriz Flores, Gabriel Monteiro
 
 ### Dividas da Interação
 - 
