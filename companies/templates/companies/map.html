@@ -1,0 +1,109 @@
+{% extends "base/base.html" %}
+
+{% block title %}Map{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Company Map</h1>
+
+    <form id="upload-form" enctype="multipart/form-data" class="mb-4">
+        <div class="form-group">
+            <label for="file-input">Upload CSV:</label>
+            <input type="file" id="file-input" name="file" class="form-control-file">
+        </div>
+        <button type="submit" class="btn btn-primary">Upload CSV</button>
+    </form>
+
+    <form id="filter-form" class="mb-4">
+        <div class="form-group">
+            <label for="certification">Filter by Certification:</label>
+            <select id="certification" class="form-control">
+                <option value="">All</option>
+                <!-- Options will be populated dynamically -->
+            </select>
+        </div>
+        <button type="submit" class="btn btn-secondary">Filter</button>
+    </form>
+
+    <div id="map"></div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    const token = 'a2127860420dbefc819cc5593445727491162c4b';  // Insira seu token aqui
+
+    document.getElementById('upload-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append('file', document.getElementById('file-input').files[0]);
+
+        fetch('/api/upload-csv/', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Authorization': `Token ${token}`
+            }
+        }).then(response => {
+            if (response.ok) {
+                alert('CSV uploaded successfully');
+                location.reload();
+            } else {
+                alert('Failed to upload CSV');
+            }
+        });
+    });
+
+    var map = L.map('map').setView([-23.5505, -46.6333], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    function loadCompanies(certification = '') {
+        fetch(`/api/companies/?certification=${certification}`, {
+            headers: {
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            map.eachLayer((layer) => {
+                if (layer instanceof L.Marker) {
+                    map.removeLayer(layer);
+                }
+            });
+            data.forEach(company => {
+                if (company.latitude && company.longitude) {
+                    L.marker([company.latitude, company.longitude]).addTo(map)
+                        .bindPopup(`<b>${company.name}</b><br>${company.street}, ${company.number}<br>${company.city}, ${company.state}<br>Certifications: ${company.certifications.map(cert => cert.name).join(', ')}`);
+                }
+            });
+        });
+    }
+
+    fetch('/api/certifications/', {
+        headers: {
+            'Authorization': `Token ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        const select = document.getElementById('certification');
+        data.forEach(cert => {
+            const option = document.createElement('option');
+            option.value = cert.name;
+            option.text = cert.name;
+            select.add(option);
+        });
+    });
+
+    document.getElementById('filter-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const certification = document.getElementById('certification').value;
+        loadCompanies(certification);
+    });
+
+    loadCompanies();
+</script>
+{% endblock %}
