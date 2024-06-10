@@ -23,10 +23,6 @@ Representante: Antonello
 Qualificação: Sócio-Diretor
 Responsabilidade: Tomada de decisões estratégicas baseadas nos insights fornecidos pelo sistema.
 
-Posicionamento
-
----
-
 ## Oportunidade de Negócios
 
 Aprimorar a tomada de decisão e estratégias de marketing por meio de análises geográficas precisas e detalhadas dos clientes.
