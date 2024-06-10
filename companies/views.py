@@ -1,7 +1,6 @@
 import logging
 import csv
 import os
-import googlemaps
 from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from rest_framework.decorators import action, api_view, permission_classes
@@ -75,7 +74,8 @@ def upload_csv(request):
         file_path = default_storage.save(os.path.join('tmp', file.name), file)
         logger.info(f"File saved to: {file_path}")
 
-        with open(os.path.join(settings.MEDIA_ROOT, file_path), newline='', encoding='utf-8') as csvfile:
+        full_path = os.path.join(settings.MEDIA_ROOT, file_path)
+        with open(full_path, newline='', encoding='utf-8') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 logger.info(f"Processing row: {row}")
@@ -96,13 +96,17 @@ def upload_csv(request):
                 company.certifications.set(cert_objects)
                 company.save()
         return Response({"status": "success"})
+    except FileNotFoundError as e:
+        logger.error(f"File not found: {e}")
+        return Response({"status": "error", "message": "File not found"}, status=404)
     except Exception as e:
         logger.error(f"Error uploading CSV: {e}")
         return Response({"status": "error", "message": str(e)}, status=500)
 
 @receiver(pre_save, sender=Company)
 def add_lat_long(sender, instance, **kwargs):
-    geolocator = Nominatim(user_agent="projeto_certibrasil_app_v1", timeout=10)
+    user_agent = "projeto_certibrasil_app_v1"
+    geolocator = Nominatim(user_agent=user_agent, timeout=10)
     try:
         location = geolocator.geocode(f"{instance.street} {instance.number}, {instance.city}, {instance.state}, {instance.zip_code}")
         if location:
@@ -112,4 +116,5 @@ def add_lat_long(sender, instance, **kwargs):
             logger.warning(f"Geocode not found for: {instance.street} {instance.number}, {instance.city}, {instance.state}, {instance.zip_code}")
     except Exception as e:
         logger.error(f"Geocoding error: {e}")
+
 
