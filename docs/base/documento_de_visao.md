@@ -29,15 +29,9 @@ Aprimorar a tomada de decisão e estratégias de marketing por meio de análises
 
 ## Descrição do Problema
 
-**O Problema:** Falta de ferramentas integradas para análise geográfica de dados de clientes.
-**Afeta:** Gestores e equipes de marketing.
-**O seu Impacto É:** Ineficiência na criação de estratégias de mercado e na tomada de decisões.
-
-
----
-id: documento_de_visao
-title: Documento de Visão
----
+O Problema: Falta de ferramentas integradas para análise geográfica de dados de clientes.
+Afeta: Gestores e equipes de marketing.
+O seu Impacto É: Ineficiência na criação de estratégias de mercado e na tomada de decisões.
 
 ### Impactados
 
