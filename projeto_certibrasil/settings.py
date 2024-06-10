@@ -155,9 +155,14 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# Arquivos de mídia
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Directory for temporary file storage
+TEMP_DIR = os.path.join(MEDIA_ROOT, 'tmp')
+
+# Ensure the temp directory exists
+os.makedirs(TEMP_DIR, exist_ok=True)
 
 # Configurações adicionais (se necessário)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

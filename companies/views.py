@@ -1,5 +1,7 @@
 import logging
 import csv
+import os
+import googlemaps
 from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from rest_framework.decorators import action, api_view, permission_classes
@@ -14,6 +16,7 @@ from .models import Company, Certification
 from .serializers import CompanySerializer, CertificationSerializer
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
+from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
@@ -68,31 +71,30 @@ def upload_csv(request):
         file = request.FILES['file']
         logger.info(f"Received file: {file.name}")
         
-        file_path = default_storage.save(f'tmp/{file.name}', file)
+        # Save file to the media/tmp directory
+        file_path = default_storage.save(os.path.join('tmp', file.name), file)
         logger.info(f"File saved to: {file_path}")
 
-        with open(file_path, newline='', encoding='utf-8') as csvfile:
+        with open(os.path.join(settings.MEDIA_ROOT, file_path), newline='', encoding='utf-8') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 logger.info(f"Processing row: {row}")
-                certifications = row['certifications'].split(';')
+                certifications = row.get('certifications', '')
+                cert_list = certifications.split(';') if certifications else []
                 cert_objects = []
-                for cert in certifications:
+                for cert in cert_list:
                     obj, created = Certification.objects.get_or_create(name=cert.strip())
                     cert_objects.append(obj)
-                try:
-                    company = Company.objects.create(
-                        name=row['name'],
-                        street=row['street'],
-                        number=row['number'],
-                        zip_code=row['zip_code'],
-                        city=row['city'],
-                        state=row['state']
-                    )
-                    company.certifications.set(cert_objects)
-                    company.save()
-                except ValidationError as ve:
-                    logger.error(f"Validation error for company {row['name']}: {ve}")
+                company = Company.objects.create(
+                    name=row['name'],
+                    street=row['street'],
+                    number=row['number'],
+                    zip_code=row['zip_code'],
+                    city=row['city'],
+                    state=row['state']
+                )
+                company.certifications.set(cert_objects)
+                company.save()
         return Response({"status": "success"})
     except Exception as e:
         logger.error(f"Error uploading CSV: {e}")
@@ -100,8 +102,14 @@ def upload_csv(request):
 
 @receiver(pre_save, sender=Company)
 def add_lat_long(sender, instance, **kwargs):
-    geolocator = Nominatim(user_agent="myGeocoder")
-    location = geolocator.geocode(f"{instance.street} {instance.number}, {instance.city}, {instance.state}, {instance.zip_code}")
-    if location:
-        instance.latitude = location.latitude
-        instance.longitude = location.longitude
+    geolocator = Nominatim(user_agent="projeto_certibrasil_app_v1", timeout=10)
+    try:
+        location = geolocator.geocode(f"{instance.street} {instance.number}, {instance.city}, {instance.state}, {instance.zip_code}")
+        if location:
+            instance.latitude = location.latitude
+            instance.longitude = location.longitude
+        else:
+            logger.warning(f"Geocode not found for: {instance.street} {instance.number}, {instance.city}, {instance.state}, {instance.zip_code}")
+    except Exception as e:
+        logger.error(f"Geocoding error: {e}")
+

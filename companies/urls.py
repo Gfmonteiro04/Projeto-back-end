@@ -12,5 +12,5 @@ urlpatterns = [
     path('dashboard/', dashboard_view, name='dashboard'),
     path('register/', register, name='register'),
     path('login/', login_view, name='account_login'),
-    path('upload-csv/', upload_csv, name='upload_csv'),  # Adicionando a URL para upload de CSV
+    path('upload-csv/', upload_csv, name='upload_csv'),
 ]
