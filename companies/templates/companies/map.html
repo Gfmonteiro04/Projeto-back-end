@@ -5,13 +5,25 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h1>Map</h1>
+    <h1>Mapa</h1>
     <form id="upload-form" action="{% url 'upload_csv' %}" enctype="multipart/form-data" method="post">
         {% csrf_token %}
         <input type="file" id="file-input" name="file" accept=".csv">
         <button type="submit" class="btn btn-primary">Upload CSV</button>
     </form>
-    <div id="map"></div>
+    <form id="filter-form" class="mt-3">
+        <label for="certification">Filrar por Certificação:</label>
+        <select id="certification" name="certification" class="form-control">
+            <option value="">Todas</option>
+        </select>
+        <button type="submit" class="btn btn-primary mt-2">Filtrar</button>
+    </form>
+    <div class="mt-3">
+        <label for="search-name">Buscar por Nome:</label>
+        <input type="text" id="search-name" class="form-control" placeholder="Digite o nome">
+        <ul id="search-results" class="list-group mt-2"></ul>
+    </div>
+    <div id="map" class="mt-4"></div>
 </div>
 {% endblock %}
 
@@ -46,8 +58,73 @@
         });
     });
 
+    document.getElementById('filter-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const certification = document.getElementById('certification').value;
+        loadCompanies(certification);
+    });
+
+    document.getElementById('search-name').addEventListener('input', function(e) {
+        const query = e.target.value;
+        if (query.length > 2) {
+            searchByName(query);
+        } else {
+            document.getElementById('search-results').innerHTML = '';
+        }
+    });
+
     function loadCompanies(certification = '') {
-        fetch(`/api/companies/?certification=${certification}`)
+        fetch(`/api/companies/filter_by_certification/?certification=${certification}`)
+        .then(response => response.json())
+        .then(data => {
+            map.eachLayer((layer) => {
+                if (layer instanceof L.Marker) {
+                    map.removeLayer(layer);
+                }
+            });
+            data.forEach(company => {
+                if (company.latitude && company.longitude) {
+                    L.marker([company.latitude, company.longitude]).addTo(map)
+                        .bindPopup(`<b>${company.name}</b><br>${company.street}, ${company.number}<br>${company.city}, ${company.state}<br>Certifications: ${company.certifications.map(cert => cert.name).join(', ')}`);
+                }
+            });
+        });
+    }
+
+    function loadCertifications() {
+        fetch('/api/certifications/')
+        .then(response => response.json())
+        .then(data => {
+            const select = document.getElementById('certification');
+            data.forEach(cert => {
+                const option = document.createElement('option');
+                option.value = cert.name;
+                option.text = cert.name;
+                select.add(option);
+            });
+        });
+    }
+
+    function searchByName(query) {
+        fetch(`/api/companies/search_by_name/?q=${query}`)
+        .then(response => response.json())
+        .then(data => {
+            const results = document.getElementById('search-results');
+            results.innerHTML = '';
+            data.forEach(company => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item';
+                li.textContent = company.name;
+                li.addEventListener('click', function() {
+                    loadCompaniesByName(company.name);
+                });
+                results.appendChild(li);
+            });
+        });
+    }
+
+    function loadCompaniesByName(name) {
+        fetch(`/api/companies/search_by_name/?q=${name}`)
         .then(response => response.json())
         .then(data => {
             map.eachLayer((layer) => {
@@ -65,5 +142,6 @@
     }
 
     loadCompanies();
+    loadCertifications();
 </script>
 {% endblock %}

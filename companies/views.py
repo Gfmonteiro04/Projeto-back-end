@@ -46,7 +46,7 @@ def login_view(request):
 class CompanyViewSet(viewsets.ModelViewSet):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
-    permission_classes = [IsAuthenticated]
+#    permission_classes = [IsAuthenticated]
 
     @action(detail=False, methods=['get'])
     def filter_by_certification(self, request):
@@ -57,14 +57,24 @@ class CompanyViewSet(viewsets.ModelViewSet):
             companies = Company.objects.all()
         serializer = self.get_serializer(companies, many=True)
         return Response(serializer.data)
+    
+    @action(detail=False, methods=['get'])
+    def search_by_name(self, request):
+        query = request.query_params.get('q', None)
+        if query:
+            companies = Company.objects.filter(name__icontains=query)
+        else:
+            companies = Company.objects.all()
+        serializer = self.get_serializer(companies, many=True)
+        return Response(serializer.data)    
 
 class CertificationViewSet(viewsets.ModelViewSet):
     queryset = Certification.objects.all()
     serializer_class = CertificationSerializer
-    permission_classes = [IsAuthenticated]
+#    permission_classes = [IsAuthenticated]
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+#@permission_classes([IsAuthenticated])
 def upload_csv(request):
     try:
         file = request.FILES['file']
